@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Go further. Feel more.</title>
+<meta name="description" content="Discover inspiring destinations, unique stays, and unforgettable experiences — all in one place.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<main class="page">
+  <header class="hero">
+    <h1 class="title"><span>Go further.</span><span>Feel more.</span></h1>
+    <p class="lede">Discover inspiring destinations, unique stays, and unforgettable experiences — all in one place.</p>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Search type">
+    <button class="tab" role="tab" aria-selected="true" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M3.2 20.8V5.6a3 3 0 0 1 3-3h3.6a3 3 0 0 1 3 3v15.2Z"/><path d="M12.8 12.2h7a1 1 0 0 1 1 1v6.6a1 1 0 0 1-1 1h-7"/><path d="M6.4 8h3.2M6.4 11.2h3.2M16.3 14.2v6.4M12.8 17.4h8"/><path d="M2.4 20.8h19.2"/></svg>
+      Stays
+    </button>
+    <button class="tab" role="tab" aria-selected="false" type="button">
+      <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M234.68,130.63,158,92.29V48a30,30,0,0,0-60,0V92.29L21.32,130.63A6,6,0,0,0,18,136v32a6,6,0,0,0,7.18,5.88L98,159.32v22.19L83.76,195.76A6,6,0,0,0,82,200v32a6,6,0,0,0,8.23,5.57L128,222.46l37.770,15.11A6,6,0,0,0,174,232V200a6,6,0,0,0-1.76-4.240L158,181.51V159.32l72.82,14.56A6,6,0,0,0,238,168V136A6,6,0,0,0,234.68,130.63ZM226,160.68l-72.82-14.56A6,6,0,0,0,146,152v32a6,6,0,0,0,1.76,4.24L162,202.49v20.65l-31.77-12.71a6,6,0,0,0-4.46,0L94,223.14V202.49l14.24-14.25A6,6,0,0,0,110,184V152a6,6,0,0,0-7.18-5.88L30,160.68v-21l76.68-38.34A6,6,0,0,0,110,96V48a18,18,0,0,1,36,0V96a6,6,0,0,0,3.32,5.37L226,139.710Z"/></svg>
+      Flights
+    </button>
+    <button class="tab" role="tab" aria-selected="false" type="button">
+      <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M227.69,51.27a6,6,0,0,0-5.15-1.09L160.7,65.64l-62-31a6,6,0,0,0-4.14-.45l-64,16A6,6,0,0,0,26,56V200a6,6,0,0,0,7.46,5.82L95.3,190.36l62,31a6,6,0,0,0,4.14.45l64-16A6,6,0,0,0,230,200V56A6,6,0,0,0,227.69,51.27ZM102,49.71l52,26V206.29l-52-26Zm-64,11,52-13V179.32l-52,13ZM218,195.32l-52,13V76.68l52-13Z"/></svg>
+      Experiences
+    </button>
+  </div>
+
+  <form class="search" role="search" onsubmit="return false">
+    <label class="field">
+      <span class="field-label">Where to?</span>
+      <span class="field-value">
+        <svg style="--ix:-2;--ig:10.4" viewBox="-6 -6 268 268" fill="currentColor" aria-hidden="true"><path d="M128,66a38,38,0,1,0,38,38A38,38,0,0,0,128,66Zm0,64a26,26,0,1,1,26-26A26,26,0,0,1,128,130Zm0-112a86.1,86.1,0,0,0-86,86c0,30.91,14.34,63.74,41.47,94.94a252.32,252.32,0,0,0,41.09,38,6,6,0,0,0,6.88,0,252.32,252.32,0,0,0,41.090-38c27.13-31.2,41.47-64,41.47-94.94A86.1,86.1,0,0,0,128,18Zm0,206.51C113,212.93,54,163.62,54,104a74,74,0,0,1,148,0C202,163.62,143,212.93,128,224.51Z"/></svg>
+        <span>Tokyo</span>
+      </span>
+    </label>
+    <label class="field">
+      <span class="field-label">Dates</span>
+      <span class="field-value">
+        <svg style="--ix:-1.4;--ig:8.6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="4.6" width="17.2" height="16" rx="2"/><path d="M3.4 9h17.2M8 2.8v3.4M16 2.8v3.4"/><g fill="currentColor" stroke="none"><circle cx="8.2" cy="13" r="1"/><circle cx="12" cy="13" r="1"/><circle cx="15.8" cy="13" r="1"/><circle cx="8.2" cy="16.6" r="1"/><circle cx="12" cy="16.6" r="1"/><circle cx="15.8" cy="16.6" r="1"/></g></svg>
+        <span>Oct 14 – Oct 20</span>
+      </span>
+    </label>
+    <label class="field">
+      <span class="field-label">Travelers</span>
+      <span class="field-value">
+        <svg style="--ix:-2.8;--ig:8.3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="7.2" r="3.9"/><ellipse cx="12" cy="17.6" rx="6.6" ry="3.7"/></svg>
+        <span>2 travelers</span>
+      </span>
+    </label>
+    <div class="action">
+      <button class="btn" type="submit">
+        <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M228.24,219.76l-51.38-51.38a86.15,86.15,0,1,0-8.48,8.48l51.38,51.38a6,6,0,0,0,8.48-8.48ZM38,112a74,74,0,1,1,74,74A74.09,74.09,0,0,1,38,112Z"/></svg>
+        Search
+      </button>
+    </div>
+  </form>
+
+  <figure class="photo">
+    <img src="assets/moraine-lake.jpg" alt="Calm lake below forested mountains with canoes moored at the far shore" decoding="async">
+    <figcaption class="chip"><b>Moraine Lake, Alberta</b><code>51.32° N</code></figcaption>
+  </figure>
+</main>
+</body>
+</html>

@@ -1,0 +1,195 @@
+/* ------------------------------------------------------------------
+   Fonts — subset + embedded (fully offline)
+   Display: Inter Display 700 · Body: Inter 400/500/600 · Mono: DejaVu Sans Mono
+------------------------------------------------------------------- */
+@font-face{font-family:"GF Display";font-weight:700;font-style:normal;font-display:block;src:url(./display-700.woff2) format("woff2")}
+@font-face{font-family:"GF Sans";font-weight:400;font-style:normal;font-display:block;src:url(./sans-400.woff2) format("woff2")}
+@font-face{font-family:"GF Sans";font-weight:500;font-style:normal;font-display:block;src:url(./sans-500.woff2) format("woff2")}
+@font-face{font-family:"GF Sans";font-weight:600;font-style:normal;font-display:block;src:url(./sans-600.woff2) format("woff2")}
+@font-face{font-family:"GF Mono";font-weight:400;font-style:normal;font-display:block;src:url(./mono-400.woff2) format("woff2")}
+
+/* ------------------------------------------------------------------
+   Design tokens (sampled from the reference)
+------------------------------------------------------------------- */
+:root{
+  color-scheme: light;
+  --bg:#FEFEFE;
+  --ink:#0B0E0C;          /* headline */
+  --strong:#111212;       /* active tab, chip title */
+  --text:#222223;         /* field values, active tab, chip title */
+  --label:#111313;        /* field labels */
+  --muted:#6E7070;        /* inactive tabs */
+  --lede:#727274;         /* lede paragraph */
+  --mono:#7E7F81;         /* chip coordinate */
+  --line:#E6E6E7;         /* card borders + dividers */
+  --red:#C2281E;          /* primary / button */
+  --red-icon:#C02B23;     /* field icons + active underline */
+  --chip:rgba(255,255,255,.985);
+
+  --f-display:"GF Display","Inter Display","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-sans:"GF Sans","Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"GF Mono","DejaVu Sans Mono",Menlo,ui-monospace,monospace;
+
+  /* Reference artboard: 1446 × 1088.
+     --sx : horizontal scale (always tracks the viewport width → no side gutters)
+     --u  : typographic / vertical scale. Equals --sx when the viewport has the
+            reference aspect ratio (pixel-exact), shrinks on short-wide screens so
+            the photo keeps real height, but never below 0.78px so text stays legible. */
+  --sx: calc(100vw / 1446);
+  --u: min(var(--sx), max(calc(100vh / 1088), .78px));
+}
+@supports (height:100dvh){ :root{ --u: min(var(--sx), max(calc(100dvh / 1088), .78px)); } }
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg)}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  font-family:var(--f-sans);color:var(--text);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;font-kerning:normal;
+}
+button,input{font:inherit;color:inherit}
+svg{display:block;flex:none}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ------------------------------------------------------------------
+   Page shell — exactly one viewport tall; the photo absorbs all spare
+   height, so there is never blank space above or below the layout.
+------------------------------------------------------------------- */
+.page{
+  display:flex;flex-direction:column;
+  height:100vh;height:100dvh;min-height:calc(var(--u) * 640);
+  padding:0 calc(var(--sx) * 57) calc(var(--u) * 78) calc(var(--sx) * 60);
+  overflow:hidden;
+}
+
+/* Hero */
+.hero{display:flex;justify-content:space-between;align-items:flex-start;gap:calc(var(--u) * 40);flex:none}
+.title{
+  margin:calc(var(--u) * 83) 0 0 calc(var(--u) * 1);
+  font-family:var(--f-display);font-weight:700;
+  font-size:calc(var(--u) * 88);line-height:calc(var(--u) * 85);
+  letter-spacing:-0.0165em;color:var(--ink);white-space:nowrap;
+  font-feature-settings:"ss01" 0;
+}
+.title span{display:block}
+.lede{
+  margin:calc(var(--u) * 183) calc(var(--u) * 3) 0 0;
+  max-width:max(calc(var(--u) * 420), 24.5em);
+  font-size:max(calc(var(--u) * 17.4), 14px);line-height:calc(var(--u) * 30);
+  letter-spacing:0em;
+  color:var(--lede);text-align:right;font-weight:400;
+}
+
+/* Tabs */
+.tabs{
+  display:flex;gap:calc(var(--u) * 25);flex:none;
+  margin:calc(var(--u) * 39) 0 0 calc(var(--u) * 1);padding:0;list-style:none;
+  position:relative;z-index:1;
+}
+.tab{
+  display:flex;align-items:center;gap:calc(var(--u) * 8.5);
+  height:calc(var(--u) * 46);padding:0 calc(var(--u) * 1) 0 0;
+  border:0;background:none;cursor:pointer;
+  font-size:max(calc(var(--u) * 16), 14px);font-weight:500;letter-spacing:-0.01em;color:var(--muted);
+  border-bottom:calc(var(--u) * 2) solid transparent;
+}
+.tab svg{margin-left:calc(var(--u) * -1);width:calc(var(--u) * 20);height:calc(var(--u) * 20);min-width:15px;min-height:15px}
+.tab[aria-selected="true"]{color:var(--strong);font-weight:600;border-bottom-color:var(--red-icon)}
+.tab:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+
+/* Search card */
+.search{
+  display:grid;flex:none;margin-top:-1px;
+  grid-template-columns:minmax(0,483fr) minmax(0,355fr) minmax(0,319fr) minmax(0,169fr);
+  border:1px solid var(--line);background:var(--bg);
+}
+.field{
+  display:flex;flex-direction:column;justify-content:flex-start;min-width:0;
+  padding:calc(var(--u) * 22) calc(var(--u) * 16) calc(var(--u) * 17) calc(var(--u) * 23.5);
+  border-right:1px solid var(--line);
+}
+.field + .field{padding-left:calc(var(--u) * 22)}
+.field-label{
+  font-size:max(calc(var(--u) * 12), 10px);font-weight:600;letter-spacing:0.09em;
+  line-height:1;text-transform:uppercase;color:var(--label);
+}
+.field-value{
+  display:flex;align-items:center;
+  margin-top:calc(var(--u) * 11);
+  height:calc(var(--u) * 20);
+  font-size:max(calc(var(--u) * 16), 14px);line-height:calc(var(--u) * 20);letter-spacing:-0.015em;
+  color:var(--text);white-space:nowrap;
+}
+.field-value span{overflow:hidden;text-overflow:ellipsis}
+.field-value svg{width:calc(var(--u) * 22);height:calc(var(--u) * 22);min-width:18px;min-height:18px;color:var(--red-icon);
+  margin-left:calc(var(--u) * var(--ix, 0));margin-right:calc(var(--u) * var(--ig, 9))}
+.action{display:flex;padding:calc(var(--u) * 9) calc(var(--u) * 14) calc(var(--u) * 9) calc(var(--u) * 11)}
+.btn{
+  flex:1;display:inline-flex;align-items:center;justify-content:center;gap:calc(var(--u) * 6.3);
+  min-height:calc(var(--u) * 64);
+  border:0;border-radius:calc(var(--u) * 3);background:var(--red);color:#fff;cursor:pointer;
+  font-size:max(calc(var(--u) * 17), 14px);font-weight:600;letter-spacing:-0.02em;
+  transition:background-color .15s ease, box-shadow .15s ease;
+}
+.btn svg{width:calc(var(--u) * 19);height:calc(var(--u) * 19);min-width:15px;min-height:15px}
+.btn:hover{background:#AE2219}
+.btn:active{background:#9C1E16}
+.btn:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+
+/* Photo — fills whatever height remains */
+.photo{
+  position:relative;flex:1 1 auto;min-height:calc(var(--u) * 180);
+  margin:calc(var(--u) * 24) 0 0;overflow:hidden;background:#3c5a46;
+}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.chip{
+  position:absolute;left:calc(var(--u) * 17);bottom:calc(var(--u) * 16);
+  display:flex;align-items:center;gap:calc(var(--u) * 10);
+  height:calc(var(--u) * 34);padding:0 calc(var(--u) * 11) 0 calc(var(--u) * 12);
+  background:var(--chip);
+  white-space:nowrap;
+}
+.chip b{font-weight:600;font-size:max(calc(var(--u) * 12), 11px);letter-spacing:-0.01em;color:var(--strong)}
+.chip code{font-family:var(--f-mono);font-size:max(calc(var(--u) * 11.9), 10px);letter-spacing:0em;color:var(--mono)}
+
+/* ------------------------------------------------------------------
+   Tablet & mobile — reflow instead of shrinking; photo still fills the
+   remaining viewport height so nothing ever floats in white space.
+------------------------------------------------------------------- */
+/* Stacked layout: narrow screens, plus portrait tablets / tall windows where a
+   width-locked desktop artboard would render tiny type. */
+@media (max-width: 1023.98px), (max-aspect-ratio: 1/1) and (max-width: 1400px){
+  :root{ --u: 1px; }
+  .page{height:auto;min-height:100vh;min-height:100dvh;overflow:visible;
+        padding:clamp(24px,6vw,48px) clamp(16px,5vw,40px) clamp(16px,4vw,32px)}
+  .hero{flex-direction:column;gap:clamp(14px,2.4vw,20px)}
+  .title{margin:0;font-size:clamp(46px,11.8vw,92px);line-height:.966;letter-spacing:-.0165em;white-space:normal}
+  .lede{margin:0;max-width:30em;text-align:left;font-size:clamp(15px,2.3vw,17.4px);line-height:1.66}
+  .tabs{margin:clamp(22px,4vw,34px) 0 0;gap:22px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{height:44px;font-size:15px;gap:8px;flex:none}
+  .search{grid-template-columns:minmax(0,1fr)}
+  .field,.field + .field{padding:14px 16px 15px;border-right:0;border-bottom:1px solid var(--line)}
+  .field-label{font-size:11px}
+  .field-value{margin-top:9px;height:22px;font-size:16px;line-height:22px}
+  .field-value svg{--ix:-2!important}
+  .action{padding:10px}
+  .btn{min-height:52px;font-size:17px;gap:7px}
+  .photo{min-height:240px;margin-top:20px}
+  .chip{left:12px;bottom:12px;height:32px;padding:0 11px;gap:10px}
+}
+@media (min-width: 640px) and (max-width: 1023.98px), (min-width: 640px) and (max-aspect-ratio: 1/1) and (max-width: 1400px){
+  .search{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .field,.field + .field{border-bottom:0;border-right:1px solid var(--line);padding:16px 18px 17px}
+  .field:nth-child(3){border-right:0}
+  .action{grid-column:1 / -1;border-top:1px solid var(--line)}
+}
+/* Short landscape phones: size type off the height so the photo stays visible. */
+@media (max-width: 1023.98px) and (orientation: landscape) and (max-height: 520px){
+  .title{font-size:max(40px, 14.5vh)}
+  .hero{flex-direction:row;justify-content:space-between;align-items:flex-end}
+  .lede{max-width:27em;text-align:right;font-size:14px;line-height:1.6}
+  .photo{min-height:78vh}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
